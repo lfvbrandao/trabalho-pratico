@@ -97,10 +97,10 @@ void finalizacao(Pessoa* pessoas[]){
 }
 
 int tamanho(){
-    FILE* tamanhoArq = fopen("tamanho.dat", "r");
+    FILE* tamanhoArq = fopen("../db/tamanho.dat", "r");
 
     if(tamanhoArq == NULL){
-        tamanhoArq = fopen("tamanho.dat", "w");
+        tamanhoArq = fopen("../db/tamanho.dat", "w");
         Pessoa::TAM = 0;
         fprintf(tamanhoArq, "%d", Pessoa::TAM);
         fclose(tamanhoArq);
@@ -113,7 +113,7 @@ int tamanho(){
 }
 
 void gravaTamanhoArquivo(){
-    FILE* tamanho = fopen("tamanho.dat", "w");
+    FILE* tamanho = fopen("../db/tamanho.dat", "w");
      if(tamanho){
         fprintf(tamanho, "%d", Pessoa::TAM);
     } 
@@ -143,7 +143,7 @@ string leiaCPF(){
 }
 
 void carregaPessoasArquivo(Pessoa* pessoas[]){
-    ifstream arquivo("pessoas.txt");
+    ifstream arquivo("../db/pessoas.txt");
     if(arquivo.is_open()){
         for(int i=0; i<Pessoa::TAM; i++){
             lePessoasArquivo(arquivo, pessoas[i]);
@@ -192,7 +192,7 @@ void lePessoasArquivo(ifstream& arquivo, Pessoa*& pessoa){
 
 void gravaPessoasArquivo(Pessoa* pessoas[]){
     // Abre o arquivo e escreve truncando(escreve por cima), tipo o "w" de C
-    ofstream arquivo("pessoas.txt", ios::trunc);
+    ofstream arquivo("../db/pessoas.txt", ios::trunc);
 
     if(arquivo.is_open()){
         for(int i=0; i<Pessoa::TAM; i++){
